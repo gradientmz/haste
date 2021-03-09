@@ -68,9 +68,9 @@
   <div />
   <div>
     <h1 class="title">Haste</h1>
-		<div class="textbox">
-			<p>{text}</p>
-		</div>
+    <div class="textbox">
+      <p>{text}</p>
+    </div>
     <div class="progressbar-outer">
       <div class="progressbar-inner" style="width: {progress}%" />
     </div>
@@ -79,6 +79,14 @@
         class="typebox"
         disabled={inputdisabled}
         placeholder="Type here!"
+        type="text"
+        onselectstart="return false"
+        onpaste="return false;"
+        onCopy="return false"
+        onCut="return false"
+        onDrag="return false"
+        onDrop="return false"
+        autocomplete="off"
         bind:value={typed}
         on:input={type}
       />
@@ -118,8 +126,8 @@
   p {
     text-align: center;
     font-size: 1.25rem;
-		margin-left: 1rem;
-		margin-right: 1rem;
+    margin-left: 1rem;
+    margin-right: 1rem;
   }
   .typebox-container {
     text-align: center;
@@ -141,11 +149,14 @@
   }
   .restart {
     font-size: 1.5rem;
-    margin-top: 1rem;
+    margin-top: 1.25rem;
     border: 2px solid lightgray;
     border-radius: 0.5rem;
     padding: 0.5rem 1rem;
   }
+	.restart:focus {
+		border-color: black;
+	}
   .progressbar-outer {
     height: 0.75rem;
     width: 60vw;
@@ -186,23 +197,25 @@
     font-size: 10pt;
     margin: 0px 2px 0px 2px;
   }
-	.textbox {
-		width: 90vw;
-	}
+  .textbox {
+    width: 90vw;
+  }
 
   @media only screen and (max-width: 900px) {
-		.title {
-			margin-bottom: 1rem;
-		}
-   p {
-		 border: 2px solid lightgray;
-		 border-radius: 0.5rem;
-		 padding: 1rem 1.5rem;
-		 margin: 0rem 0rem 1.5rem 0rem;
-		 background-color: white;
-	 }
-	 .progressbar-inner, .progressbar-outer, .typebox {
-			width: 90vw;
-	 }
+    .title {
+      margin-bottom: 1rem;
+    }
+    p {
+      border: 2px solid lightgray;
+      border-radius: 0.5rem;
+      padding: 1rem 1.5rem;
+      margin: 0rem 0rem 1.5rem 0rem;
+      background-color: white;
+    }
+    .progressbar-inner,
+    .progressbar-outer,
+    .typebox {
+      width: 90vw;
+    }
   }
 </style>
