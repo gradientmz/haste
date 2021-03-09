@@ -1,12 +1,25 @@
 <script>
-  var text = "This is some example text!";
+  var text =
+    "this is some example text to practice typing on and it is placeholder text";
   var typed = "";
-  var correct = true;
   var progress = 0;
   var inputdisabled = false;
   var bgcolor = "";
 
+  var typing = false;
+
+  var time = 0;
+
+  setInterval(() => {
+    if (typing == true) {
+      time += 0.1;
+    }
+  }, 100);
+
   function type() {
+    if (typing == false) {
+      typing = true;
+    }
     // Checks if typed charcters are correct
     bgcolor = "background-color: #fff";
     if (typed.slice(0, typed.length) == text.slice(0, typed.length)) {
@@ -17,8 +30,12 @@
       // Check if the quote has been completed
       if (typed.length == text.length && typed == text) {
         console.log("String typed successfully!");
+        typing = false;
         inputdisabled = true;
-        typed = "2.0s | 999 WPM";
+        typed = `${math.round(time, 1)}s | ${math.round(
+          text.length / 5 / (time / 60),
+          1
+        )} WPM`;
         bgcolor = "background-color: #ccffe6";
       }
     } else {
@@ -28,9 +45,11 @@
   }
 
   function restart() {
+    time = 0;
     progress = 0;
     typed = "";
     inputdisabled = false;
+    typing = false;
     bgcolor = "#fff";
   }
 </script>
@@ -39,27 +58,31 @@
   <script
     src="https://kit.fontawesome.com/347d7d5619.js"
     crossorigin="anonymous"></script>
+  <script
+    src="https://cdnjs.cloudflare.com/ajax/libs/mathjs/9.2.0/math.js"
+    integrity="sha512-SewEag0kt1xsJdbfAXgLyLvYXeAoGEla4M6JSitT6ocJVI+VeUbFXkgrbloNn4cVgq46caRf31un2eoalq6YOw=="
+    crossorigin="anonymous"></script>
 </svelte:head>
 
 <body style={bgcolor}>
   <div />
   <div>
     <h1 class="title">Haste</h1>
-    <div class="textbox">
-      <p>
-        {text}
-      </p>
-    </div>
+		<div class="textbox">
+			<p>{text}</p>
+		</div>
     <div class="progressbar-outer">
       <div class="progressbar-inner" style="width: {progress}%" />
     </div>
-    <input
-      class="typebox"
-      disabled={inputdisabled}
-      placeholder="Type here!"
-      bind:value={typed}
-      on:input={type}
-    />
+    <div class="typebox-container">
+      <input
+        class="typebox"
+        disabled={inputdisabled}
+        placeholder="Type here!"
+        bind:value={typed}
+        on:input={type}
+      />
+    </div>
     <div class="restartdiv">
       <button class="restart" on:click={restart}>
         <i class="fas fa-repeat-alt fa-lg" />
@@ -71,7 +94,7 @@
     <span class="footer-right">
       <a href="https://github.com/gradientmz">Github</a>
       <a href="https://twitter.com/gradientapps">Twitter</a>
-			<a href="https://twitter.com/gradientapps">Repo</a>
+      <a href="https://github.com/gradientmz/haste">Repo</a>
     </span>
   </div>
 </body>
@@ -92,12 +115,14 @@
     margin: 0rem;
     text-align: center;
   }
-  .textbox {
-    width: 100%;
-  }
   p {
     text-align: center;
     font-size: 1.25rem;
+		margin-left: 1rem;
+		margin-right: 1rem;
+  }
+  .typebox-container {
+    text-align: center;
   }
   .typebox {
     font-size: 1.25rem;
@@ -107,6 +132,7 @@
     border: 2px solid lightgray;
     border-radius: 0.5rem;
     background-color: whitesmoke;
+    margin: auto;
   }
   .restartdiv {
     display: flex;
@@ -123,7 +149,8 @@
   .progressbar-outer {
     height: 0.75rem;
     width: 60vw;
-    margin-bottom: 0.75rem;
+    margin: auto;
+    margin-bottom: 1.25rem;
     border-radius: 0.5rem;
     background-color: #ebebeb;
   }
@@ -133,17 +160,15 @@
     background-color: #ffe100;
     transition: 0.2s;
   }
-
   .footer {
     background: #151927;
     font-family: arial;
-    font-color: white;
     padding: 10px;
     bottom: 0;
     position: fixed;
     width: 100%;
     left: -5px;
-		text-align: center;
+    text-align: center;
   }
   .footer:after {
     display: block;
@@ -155,11 +180,29 @@
   .footer-right {
     margin: 0 auto;
   }
-
   .footer a {
     color: white;
     padding: 5px;
     font-size: 10pt;
-		margin: 0px 2px 0px 2px;
+    margin: 0px 2px 0px 2px;
+  }
+	.textbox {
+		width: 90vw;
+	}
+
+  @media only screen and (max-width: 900px) {
+		.title {
+			margin-bottom: 1rem;
+		}
+   p {
+		 border: 2px solid lightgray;
+		 border-radius: 0.5rem;
+		 padding: 1rem 1.5rem;
+		 margin: 0rem 0rem 1.5rem 0rem;
+		 background-color: white;
+	 }
+	 .progressbar-inner, .progressbar-outer, .typebox {
+			width: 90vw;
+	 }
   }
 </style>
