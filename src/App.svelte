@@ -148,6 +148,7 @@
     font-family: "Inter", sans-serif;
     color: #171f36;
     transition: 0.25s;
+    overflow:hidden;
   }
   .title {
     font-size: 3rem;
