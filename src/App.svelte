@@ -12,14 +12,12 @@
 
   refresh();
 
-  document
-    .querySelector("body")
-    .addEventListener("keypress", function (e) {
-      if (e.key === "Enter") {
-        restart()
-        refresh()
-      }
-    });
+  document.querySelector("body").addEventListener("keypress", function (e) {
+    if (e.key === "Enter") {
+      restart();
+      refresh();
+    }
+  });
 
   setInterval(() => {
     if (typing == true) {
@@ -137,6 +135,10 @@
   @font-face {
     font-family: Inter;
     src: url(inter.ttf);
+  }
+
+  ::-webkit-scrollbar {
+    display: none;
   }
 
   body {
