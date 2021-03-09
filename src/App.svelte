@@ -121,7 +121,10 @@
 </body>
 
 <style>
-  @import url("https://fonts.googleapis.com/css2?family=Inter&display=swap");
+  @font-face {
+  font-family: Inter;
+  src: url(inter.ttf);
+  }
 
   body {
     display: flex;
