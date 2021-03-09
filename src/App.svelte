@@ -1,6 +1,5 @@
 <script>
-  var text =
-    "this is some example text to practice typing on and it is placeholder text";
+  var text = "";
   var author = "";
   var typed = "";
   var progress = 0;
