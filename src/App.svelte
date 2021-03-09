@@ -1,6 +1,7 @@
 <script>
   var text =
     "this is some example text to practice typing on and it is placeholder text";
+  var author = "";
   var typed = "";
   var progress = 0;
   var inputdisabled = false;
@@ -9,6 +10,8 @@
   var typing = false;
 
   var time = 0;
+
+  refresh();
 
   setInterval(() => {
     if (typing == true) {
@@ -35,13 +38,23 @@
         typed = `${math.round(time, 1)}s | ${math.round(
           text.length / 5 / (time / 60),
           1
-        )} WPM`;
+        )} WPM | Quote from ${author}`;
         bgcolor = "background-color: #ccffe6";
       }
     } else {
       console.log("There's been a typing mistake...");
       bgcolor = "background-color: #ffcccc";
     }
+  }
+
+  function refresh() {
+    fetch("https://api.quotable.io/random")
+      .then((response) => response.json())
+      .then((data) => {
+        console.log(`${data.content} —${data.author}`);
+        text = data.content;
+        author = data.author;
+      });
   }
 
   function restart() {
@@ -51,6 +64,7 @@
     inputdisabled = false;
     typing = false;
     bgcolor = "#fff";
+    refresh();
   }
 </script>
 
@@ -154,9 +168,9 @@
     border-radius: 0.5rem;
     padding: 0.5rem 1rem;
   }
-	.restart:focus {
-		border-color: black;
-	}
+  .restart:focus {
+    border-color: black;
+  }
   .progressbar-outer {
     height: 0.75rem;
     width: 60vw;

@@ -45,7 +45,7 @@ textarea {
 }
 
 input:disabled {
-  color: #ccc;
+  color: rgb(170, 170, 170);
 }
 
 button {
