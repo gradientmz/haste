@@ -12,6 +12,15 @@
 
   refresh();
 
+  document
+    .querySelector("body")
+    .addEventListener("keypress", function (e) {
+      if (e.key === "Enter") {
+        restart()
+        refresh()
+      }
+    });
+
   setInterval(() => {
     if (typing == true) {
       time += 0.1;
@@ -50,10 +59,10 @@
     fetch("https://api.quotable.io/random")
       .then((response) => response.json())
       .then((data) => {
-        var quotetext = data.content
-        quotetext.replace("‘", "") // Replacing quotes with spaces
-        quotetext.replace("’", "") // Due to compatibility issues
-        quotetext.replace("'", "") // With iOS smart quotes & others
+        var quotetext = data.content;
+        quotetext.replace("‘", ""); // Replacing quotes with spaces
+        quotetext.replace("’", ""); // Due to compatibility issues
+        quotetext.replace("'", ""); // With iOS smart quotes & others
         console.log(`${data.content} —${data.author}`);
         text = data.content;
         author = data.author;
@@ -126,8 +135,8 @@
 
 <style>
   @font-face {
-  font-family: Inter;
-  src: url(inter.ttf);
+    font-family: Inter;
+    src: url(inter.ttf);
   }
 
   body {
