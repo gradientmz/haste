@@ -1,5 +1,5 @@
 <script>
-  var text = "Click the button below to get some text to type!";
+  var text = "d";
   var author = "";
   var typed = "";
   var progress = 0;
@@ -10,9 +10,17 @@
 
   var time = 0;
 
+  refresh()
+
   document.querySelector("body").addEventListener("keypress", function (e) {
     if (e.key === "Enter") {
-      restart();
+      time = 0;
+      progress = 0;
+      typed = "";
+      inputdisabled = false;
+      typing = false;
+      bgcolor = "#fff";
+
       refresh();
     }
   });
@@ -134,18 +142,6 @@
     font-family: Inter;
     src: url(inter.ttf);
   }
-
-  /* Hide scrollbar for Chrome, Safari and Opera */
-  .scrollbar-hidden::-webkit-scrollbar {
-    display: none;
-  }
-
-  /* Hide scrollbar for IE, Edge add Firefox */
-  .scrollbar-hidden {
-    -ms-overflow-style: none;
-    scrollbar-width: none; /* Firefox */
-  }
-
   body {
     display: flex;
     align-items: center;
