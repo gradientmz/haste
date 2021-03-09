@@ -50,6 +50,10 @@
     fetch("https://api.quotable.io/random")
       .then((response) => response.json())
       .then((data) => {
+        var quotetext = data.content
+        quotetext.replace("‘", "") // Replacing quotes with spaces
+        quotetext.replace("’", "") // Due to compatibility issues
+        quotetext.replace("'", "") // With iOS smart quotes & others
         console.log(`${data.content} —${data.author}`);
         text = data.content;
         author = data.author;
