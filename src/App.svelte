@@ -1,5 +1,5 @@
 <script>
-  var text = "‎‎...";
+  var text = "Click the button below to get some text to type!";
   var author = "";
   var typed = "";
   var progress = 0;
@@ -9,8 +9,6 @@
   var typing = false;
 
   var time = 0;
-
-  refresh();
 
   document.querySelector("body").addEventListener("keypress", function (e) {
     if (e.key === "Enter") {
@@ -137,8 +135,15 @@
     src: url(inter.ttf);
   }
 
-  ::-webkit-scrollbar {
+  /* Hide scrollbar for Chrome, Safari and Opera */
+  .scrollbar-hidden::-webkit-scrollbar {
     display: none;
+  }
+
+  /* Hide scrollbar for IE, Edge add Firefox */
+  .scrollbar-hidden {
+    -ms-overflow-style: none;
+    scrollbar-width: none; /* Firefox */
   }
 
   body {
@@ -148,7 +153,6 @@
     font-family: "Inter", sans-serif;
     color: #171f36;
     transition: 0.25s;
-    overflow:hidden;
   }
   .title {
     font-size: 3rem;
