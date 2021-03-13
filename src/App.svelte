@@ -1,5 +1,5 @@
 <script>
-  var text = "d";
+  var text = "...";
   var author = "";
   var typed = "";
   var progress = 0;
