@@ -1,4 +1,4 @@
-# Haste
+# Haste [![Netlify Status](https://api.netlify.com/api/v1/badges/6d99a686-b596-4aae-aca1-53819564b933/deploy-status)](https://app.netlify.com/sites/hastetype/deploys)
 ![banner](https://i.ibb.co/mhMMQrQ/hastebanner.png)
 Haste is a simple typing speed practice/tester made with Svelte!
 
